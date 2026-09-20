@@ -1,4 +1,4 @@
-package com.example.api_rh.dto.request;
+package com.example.api_rh.dto.response;
 
 import com.example.api_rh.entity.Funcionario;
 

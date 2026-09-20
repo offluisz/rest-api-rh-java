@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.OffsetDateTime;
 
 @Repository
 public class FuncionarioDAOImpl implements FuncionarioDAO {
@@ -62,11 +63,11 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
     }
 
     @Override
-    public Funcionario delete(Long id) {
+    public void delete(Long id) {
         String sql = "update tb_funcionario set fun_datademissao = ? where fun_id = ?";
 
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, OffsetDateTime.now(), id);
 
-        return findById(id);
+        findById(id);
     }
 }

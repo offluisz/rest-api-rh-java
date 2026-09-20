@@ -1,11 +1,9 @@
 package com.example.api_rh.services;
 
 import com.example.api_rh.dao.CargoDAO;
-import com.example.api_rh.dao.CargoDAOImpl;
 import com.example.api_rh.dao.FuncionarioDAO;
-import com.example.api_rh.dao.FuncionarioDAOImpl;
 import com.example.api_rh.dto.request.FuncionarioRequestDTO;
-import com.example.api_rh.dto.request.FuncionarioResponseDTO;
+import com.example.api_rh.dto.response.FuncionarioResponseDTO;
 import com.example.api_rh.entity.Cargo;
 import com.example.api_rh.entity.Funcionario;
 import org.springframework.dao.EmptyResultDataAccessException;

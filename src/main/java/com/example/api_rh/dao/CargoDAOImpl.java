@@ -1,6 +1,5 @@
 package com.example.api_rh.dao;
 
-import com.example.api_rh.dto.request.CargoResponseDTO;
 import com.example.api_rh.entity.Cargo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

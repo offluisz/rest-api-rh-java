@@ -8,5 +8,5 @@ public interface FuncionarioDAO {
 
     Funcionario findById(Long id);
 
-    Funcionario delete(Long id);
+    void delete(Long id);
 }

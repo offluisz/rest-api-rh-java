@@ -1,4 +1,4 @@
-package com.example.api_rh.dto.request;
+package com.example.api_rh.dto.response;
 
 public record CargoResponseDTO(
         Long Id

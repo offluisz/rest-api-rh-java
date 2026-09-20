@@ -1,11 +1,10 @@
 package com.example.api_rh.controller;
 
-import com.example.api_rh.dao.FuncionarioDAO;
 import com.example.api_rh.dto.request.FuncionarioRequestDTO;
-import com.example.api_rh.dto.request.FuncionarioResponseDTO;
-import com.example.api_rh.entity.Funcionario;
+import com.example.api_rh.dto.response.FuncionarioResponseDTO;
 import com.example.api_rh.services.FuncionarioService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,26 +23,31 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<FuncionarioResponseDTO> save(@RequestBody @Valid FuncionarioRequestDTO funcionario) {
+    public ResponseEntity<?> save(@RequestBody @Valid FuncionarioRequestDTO funcionario) {
         try {
             FuncionarioResponseDTO saveFuncionario = funcionarioService.save(funcionario);
 
             return ResponseEntity.status(201).body(saveFuncionario);
         }
+        catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
         catch (Exception e) {
-            return ResponseEntity.status(500).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao cadastrar funcionário.");
         }
     }
 
     @PatchMapping("/{id}/demitir")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
             funcionarioService.delete(id);
 
-            return ResponseEntity.status(204).build();
+            return ResponseEntity.status(200).build();
         }
-        catch (Exception e) {
-            return ResponseEntity.status(500).build();
+        catch (RuntimeException e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao demitir funcionário.");
         }
     }
 }
